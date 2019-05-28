@@ -14,7 +14,8 @@
 	<packaging>war</packaging>
 	<name>SpringDemo</name>
 	<description>Demo project for Spring Boot</description>
-
+	
+	<!-- Added comment -->
 	<properties>
 		<java.version>12</java.version>
 	</properties>
