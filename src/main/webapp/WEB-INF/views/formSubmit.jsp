@@ -19,7 +19,7 @@ color:green;
 <form:form modelAttribute="bindingObject" action="form-data-test" method="POST">
       <table>
           <tr>
-              <td>First Name:</td>
+              <td>ID:</td>
               <td><form:input path="id" /></td>
               
           </tr>
