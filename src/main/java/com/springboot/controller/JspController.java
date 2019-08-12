@@ -1,5 +1,10 @@
 package com.springboot.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springboot.beans.BindingObject;
@@ -57,6 +64,30 @@ public class JspController {
 			return new ModelAndView("formSubmit");
 		}
 		return new ModelAndView("formData");
+	}
+	
+	@RequestMapping(value = "upload")
+	public ModelAndView fileUpload()
+	{
+		ModelAndView modelAndView =new ModelAndView("upload");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value = "uploadFile" ,method = RequestMethod.POST )
+	public String fileUploadPst(@RequestParam("file") MultipartFile file)
+	{
+		try {	
+
+            // Get the file and save it somewhere
+            byte[] bytes = file.getBytes();
+            Path path = Paths.get("C:\\workspace\\Web\\" + file.getOriginalFilename());
+            Files.write(path, bytes);
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "Fail";
+        }
+		return "success";
 	}
 	
 }
